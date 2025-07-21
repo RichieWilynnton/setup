@@ -26,7 +26,6 @@ for file in "$DOTFILES_DIR"/*; do
      
     rm -rf "$target" 
     ln -s "$file" "$target"
-    # cp -r "$file" "$HOME/"
     
     echo "Copied $filename to $HOME"
 done
@@ -47,8 +46,7 @@ if [[ -f "$EXPORTS_FILE" ]]; then
         echo "Exports already present in .zshrc"
     fi
     
-    # Uncomment after testing
-    # rm "$EXPORTS_FILE"
+    rm "$EXPORTS_FILE"
 fi
 
 echo "Dotfiles installation complete!"

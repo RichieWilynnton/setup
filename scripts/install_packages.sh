@@ -6,7 +6,7 @@ EXPORTS_FILE=~/.zsh_exports_temp
 rm -f "$EXPORTS_FILE"
 
 main_package_manager=$(detect_package_manager)
-common_packages=("git" "tmux" "curl" "zsh" "wget" "fzf" "procps" "build-essential")
+common_packages=("git" "tmux" "curl" "zsh" "wget" "fzf" "procps" "build-essential" "man-db")
 linux_packages=()
 mac_packages=("neovim")
 
@@ -37,6 +37,7 @@ else
     curl -LO "https://github.com/neovim/neovim/releases/latest/download/$nvim_archive"
     run_with_priv rm -rf /opt/nvim
     run_with_priv tar -C /opt -xzf "$nvim_archive"
+    rm "$nvim_archive"
 
     nvim_path="/opt/$nvim_dir/bin/nvim"
 fi
