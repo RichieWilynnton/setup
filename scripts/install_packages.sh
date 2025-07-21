@@ -6,7 +6,7 @@ EXPORTS_FILE=~/.zsh_exports_temp
 rm -f "$EXPORTS_FILE"
 
 main_package_manager=$(detect_package_manager)
-common_packages=("git" "tmux" "curl" "zsh" "wget" "fzf" "procps")
+common_packages=("git" "tmux" "curl" "zsh" "wget" "fzf" "procps" "build-essential")
 linux_packages=()
 mac_packages=("neovim")
 
@@ -16,7 +16,6 @@ install_packages "$main_package_manager" "${common_packages[@]}"
 
 if [[ "$main_package_manager" == "brew" ]]; then
     install_packages "$main_package_manager" "${mac_packages[@]}"
-    brew install neovim
     nvim_path="$(brew --prefix neovim)/bin/nvim"
 else
     install_packages "$main_package_manager" "${linux_packages[@]}"
@@ -42,9 +41,11 @@ else
     nvim_path="/opt/$nvim_dir/bin/nvim"
 fi
 
-echo "export PATH=\"$nvim_path:\$PATH\"" >> "$EXPORTS_FILE"
+nvim_dir_path=$(dirname "$nvim_path")
+echo "export PATH=\"$nvim_dir_path:\$PATH\"" >> "$EXPORTS_FILE"
 
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-# nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+# zsh-nvm plugin
+git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
