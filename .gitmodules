@@ -1,3 +1,6 @@
 [submodule "dotfiles"]
 	path = dotfiles
 	url = https://github.com/RichieWilynnton/dotfiles
+[submodule "utils"]
+	path = utils
+	url = https://github.com/RichieWilynnton/utils.git

@@ -2,5 +2,4 @@
 
 source "$(pwd)/scripts/install_packages.sh"
 source "$(pwd)/scripts/move_configs.sh"
-
-source ~/.zshrc
+nvim --headless "+Lazy! sync" +qa

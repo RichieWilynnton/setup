@@ -14,8 +14,7 @@ echo "Using package manager: $main_package_manager"
 
 install_packages "$main_package_manager" "${common_packages[@]}"
 
-if [[ "$main_package_manager" == "brew" ]]; then
-    install_packages "$main_package_manager" "${mac_packages[@]}"
+if [[ "$main_package_manager" == "brew" ]]; then install_packages "$main_package_manager" "${mac_packages[@]}"
     nvim_path="$(brew --prefix neovim)/bin/nvim"
 else
     install_packages "$main_package_manager" "${linux_packages[@]}"
@@ -26,14 +25,18 @@ else
             nvim_dir="nvim-linux-arm64"
             ;;
         x86_64)
-            nvim_dir="nvim-linux64"
+            nvim_dir="nvim-linux-x86_64"
             ;;
         *)
             echo "Unsupported architecture: $ARCH"
             exit 1
             ;;
     esac
+    
     nvim_archive="$nvim_dir.tar.gz"
+
+    echo "Downloading Neovim archive: $nvim_archive"
+
     curl -LO "https://github.com/neovim/neovim/releases/latest/download/$nvim_archive"
     run_with_priv rm -rf /opt/nvim
     run_with_priv tar -C /opt -xzf "$nvim_archive"

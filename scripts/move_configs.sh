@@ -23,7 +23,8 @@ for file in "$DOTFILES_DIR"/*; do
         echo "Warning: Failed to backup $target" >&2
         continue
     fi
-     
+    
+    
     rm -rf "$target" 
     ln -s "$file" "$target"
     
@@ -48,5 +49,7 @@ if [[ -f "$EXPORTS_FILE" ]]; then
     
     rm "$EXPORTS_FILE"
 fi
+
+source "$HOME/.zshrc"
 
 echo "Dotfiles installation complete!"
