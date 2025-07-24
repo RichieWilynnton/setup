@@ -1,6 +1,8 @@
 [submodule "dotfiles"]
 	path = dotfiles
 	url = https://github.com/RichieWilynnton/dotfiles
+    branch = main
 [submodule "utils"]
 	path = utils
 	url = https://github.com/RichieWilynnton/utils.git
+    branch = main
